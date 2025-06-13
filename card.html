@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>신소재 카드 도감</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #eef2f5;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #2c3e50;
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      color: #555;
+      font-weight: normal;
+      font-size: 20px;
+      margin-top: 0;
+    }
+    .menu {
+      margin: 30px 0;
+    }
+    .menu a {
+      margin: 12px;
+      padding: 8px 16px;
+      background-color: #3498db;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      display: inline-block;
+    }
+    .menu a:hover {
+      background-color: #2980b9;
+    }
+    .card-view {
+      display: none;
+      margin-top: 40px;
+    }
+    #card {
+      max-width: 90%;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #3498db;
+      color: white;
+      cursor: pointer;
+    }
+    .buttons button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>신소재 카드 도감</h1>
+  <h2>미래를 바꾸는 신소재를 알아보자!</h2>
+
+  <div class="menu">
+    <a onclick="showSelectedCard(0)">그래핀</a>
+    <a onclick="showSelectedCard(1)">에어로젤</a>
+    <a onclick="showSelectedCard(2)">자가치유 플라스틱</a>
+    <a onclick="showSelectedCard(3)">형상기억합금</a>
+    <a onclick="showSelectedCard(4)">바나듐 레독스 배터리</a>
+  </div>
+
+  <div class="card-view" id="cardView">
+    <img id="card" src="" alt="신소재 카드">
+    <div class="buttons">
+      <button onclick="prevCard()">← 이전</button>
+      <button onclick="nextCard()">다음 →</button>
+    </div>
+  </div>
+
+  <script>
+    const cards = [
+      { name: "그래핀", src: "graphene.png" },
+      { name: "에어로젤", src: "aerogel.png" },
+      { name: "자가치유 플라스틱", src: "self_healing_plastic.png" },
+      { name: "형상기억합금", src: "shape_memory.png" },
+      { name: "바나듐 레독스 배터리", src: "vanadium.png" }
+    ];
+
+    let currentIndex = 0;
+
+    function showSelectedCard(index) {
+      currentIndex = index;
+      updateCard();
+      document.getElementById("cardView").style.display = "block";
+    }
+
+    function updateCard() {
+      const cardImg = document.getElementById("card");
+      cardImg.src = cards[currentIndex].src;
+      cardImg.alt = cards[currentIndex].name + " 카드";
+    }
+
+    function nextCard() {
+      currentIndex = (currentIndex + 1) % cards.length;
+      updateCard();
+    }
+
+    function prevCard() {
+      currentIndex = (currentIndex - 1 + cards.length) % cards.length;
+      updateCard();
+    }
+  </script>
+
+</body>
+</html>
